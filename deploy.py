@@ -327,7 +327,7 @@ def make_x_y_data_color_bar_graph(df,x_column,y_column,merge_factor):
 def get_graph_for_votes(df,state,district,constituency,year,merge_factor):
         
     x,y,colors=make_x_y_data_color_bar_graph(df,"Party","Count Of Votes",merge_factor)
-    title=state+' '+state+' '+constituency+' '+year
+    title=state+' '+district+' '+constituency+' '+year
     graph_div=get_bar_graph_div(x,y,colors,title)
     return graph_div
 
