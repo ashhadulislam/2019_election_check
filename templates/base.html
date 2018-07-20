@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>District wise constituency viz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+</style>
+
+
+</head>
+<body>
+<div class="container">
+  <h2>Select State and District</h2>
+  <form action="/submit_form1" method = "POST">
+    
+
+     <div class="form-group">
+      <label for="state_sel">Select list:</label>
+      <select class="form-control" id="sel1" name="state">
+        <option>Andhra Pradesh</option>
+        <option>Assam</option>
+        <option>Bihar</option>
+        <option>Delhi</option>
+        <option>Gujarat</option>
+        <option>Haryana</option>
+        <option>Jharkhand</option>
+        <option>Karnataka</option>
+        <option>Kerala</option>
+        <option>Lakshadweep</option>
+        <option>Madhya Pradesh</option>
+        <option>Maharashtra</option>
+        <option>Manipur</option>
+        <option>Pondicherry</option>
+        <option>Rajasthan</option>
+        <option>Uttar Pradesh</option>
+        <option>Uttranchal</option>
+        <option>West Bengal</option>
+      </select>
+    </div> 
+
+    <div class="form-group">
+      <label for="state_sel">Select list:</label>
+        <select class="form-control" id="sel3" name="state_dist">
+                
+            <optgroup label='Andhra Pradesh'>
+                <option value='Hyderabad'>Hyderabad</option>
+            </optgroup><optgroup label='Assam'>
+                <option value='Barpeta'>Barpeta</option>
+                <option value='Bongaigaon'>Bongaigaon</option>
+                <option value='Cachar'>Cachar</option>
+                <option value='Darrang'>Darrang</option>
+                <option value='Dhubri'>Dhubri</option>
+                <option value='Goalpara'>Goalpara</option>
+                <option value='Hailakandi'>Hailakandi</option>
+                <option value='Kamrup'>Kamrup</option>
+                <option value='Karimganj'>Karimganj</option>
+                <option value='Kokrajhar'>Kokrajhar</option>
+                <option value='Morigaon'>Morigaon</option>
+                <option value='Nagaon'>Nagaon</option>
+                <option value='Nalbari'>Nalbari</option>
+            </optgroup><optgroup label='Bihar'>
+                <option value='Araria'>Araria</option>
+                <option value='Darbhanga'>Darbhanga</option>
+                <option value='Katihar'>Katihar</option>
+                <option value='Kishanganj'>Kishanganj</option>
+                <option value='Pashchim Champaran'>Pashchim Champaran</option>
+                <option value='Purnia'>Purnia</option>
+                <option value='Sitamarhi'>Sitamarhi</option>
+            </optgroup><optgroup label='Delhi'>
+                <option value='Central  '>Central  </option>
+                <option value='North East  '>North East  </option>
+            </optgroup><optgroup label='Gujarat'>
+                <option value='Bharuch'>Bharuch</option>
+                <option value='Kachchh'>Kachchh</option>
+            </optgroup><optgroup label='Haryana'>
+                <option value='Gurgaon'>Gurgaon</option>
+            </optgroup><optgroup label='Jharkhand'>
+                <option value='Giridih'>Giridih</option>
+                <option value='Godda'>Godda</option>
+                <option value='Lohardaga'>Lohardaga</option>
+                <option value='Pakaur'>Pakaur</option>
+                <option value='Sahibganj'>Sahibganj</option>
+            </optgroup><optgroup label='Karnataka'>
+                <option value='Dakshina Kannada'>Dakshina Kannada</option>
+            </optgroup><optgroup label='Kerala'>
+                <option value='Kannur'>Kannur</option>
+                <option value='Kasaragod'>Kasaragod</option>
+                <option value='Kozhikode'>Kozhikode</option>
+                <option value='Malappuram'>Malappuram</option>
+                <option value='Palakkad'>Palakkad</option>
+                <option value='Wayanad'>Wayanad</option>
+            </optgroup><optgroup label='Lakshadweep'>
+                <option value='Lakshadweep'>Lakshadweep</option>
+            </optgroup><optgroup label='Madhya Pradesh'>
+                <option value='Bhopal'>Bhopal</option>
+                </optgroup><optgroup label='Maharashtra'>
+                <option value='Mumbai'>Mumbai</option>
+            </optgroup><optgroup label='Manipur'>
+                <option value='Thoubal'>Thoubal</option>
+            </optgroup><optgroup label='Pondicherry'>
+                <option value='Mahe'>Mahe</option>
+            </optgroup><optgroup label='Rajasthan'>
+                <option value='Jaisalmer'>Jaisalmer</option>
+            </optgroup><optgroup label='Uttar Pradesh'>
+                <option value='Baghpat'>Baghpat</option>
+                <option value='Bahraich'>Bahraich</option>
+                <option value='Balrampur'>Balrampur</option>
+                <option value='Barabanki'>Barabanki</option>
+                <option value='Bareilly'>Bareilly</option>
+                <option value='Bijnor'>Bijnor</option>
+                <option value='Budaun'>Budaun</option>
+                <option value='Bulandshahar '>Bulandshahar </option>
+                <option value='Ghaziabad'>Ghaziabad</option>
+                <option value='Jyotiba Phule Nagar'>Jyotiba Phule Nagar</option>
+                <option value='Lucknow'>Lucknow</option>
+                <option value='Meerut'>Meerut</option>
+                <option value='Moradabad'>Moradabad</option>
+                <option value='Muzaffarnagar'>Muzaffarnagar</option>
+                <option value='Pilibhit'>Pilibhit</option>
+                <option value='Rampur'>Rampur</option>
+                <option value='Saharanpur'>Saharanpur</option>
+                <option value='Sant Kabir Nagar'>Sant Kabir Nagar</option>
+                <option value='Shrawasti'>Shrawasti</option>
+                <option value='Siddharthnagar'>Siddharthnagar</option>
+            </optgroup><optgroup label='Uttranchal'>
+                <option value='Hardwar'>Hardwar</option>
+                <option value='Udham Singh Nagar'>Udham Singh Nagar</option>
+            </optgroup><optgroup label='West Bengal'>
+                <option value='Birbhum'>Birbhum</option>
+                <option value='Dakshin Dinajpur'>Dakshin Dinajpur</option>
+                <option value='Haora '>Haora </option>
+                <option value='Koch Bihar '>Koch Bihar </option>
+                <option value='Kolkata'>Kolkata</option>
+                <option value='Maldah '>Maldah </option>
+                <option value='Murshidabad '>Murshidabad </option>
+                <option value='Nadia '>Nadia </option>
+                <option value='North 24 Parganas'>North 24 Parganas</option>
+                <option value='South  24 Parganas'>South  24 Parganas</option>
+                <option value='Uttar Dinajpur'>Uttar Dinajpur</option>
+            </optgroup>
+        </select>
+    </div> 
+
+
+
+
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+</body>
+</html>
