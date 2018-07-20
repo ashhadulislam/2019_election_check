@@ -468,6 +468,8 @@ def get_all_BJP():
     # return render_template('home.html',div_graph_placeholder=Markup(full_div))
     # full_div="<div><h2>State, District</h2></div>"
     return render_template('all_bjp.html',div_graph_placeholder=Markup(full_div))
+    # print("serving cold")
+    # return render_template('allbjpstatic.html')
 
 
 
