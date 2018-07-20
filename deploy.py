@@ -66,7 +66,7 @@ def analyze_constituency(state,district,constituency,df_results):
         graph_div=graph_div+plot(fig,output_type='div')
 
         margin=num_votes[0]-num_votes[1]
-        print("BJP won by ",margin," votes")
+        # print("BJP won by ",margin," votes")
 
         #here we make the first table
 
@@ -119,10 +119,10 @@ def analyze_constituency(state,district,constituency,df_results):
 
 
         if mod_num_votes[0]>mod_num_votes[1]:
-            print("BJP still wins by ",mod_num_votes[0]-mod_num_votes[1]," votes")
+            # print("BJP still wins by ",mod_num_votes[0]-mod_num_votes[1]," votes")
             table_div=table_div+"<div>"+"BJP still wins by "+str(mod_num_votes[0]-mod_num_votes[1])+" votes"+"</div>"
         else:
-            print("BJP loses by ",mod_num_votes[1]-mod_num_votes[0]," votes")
+            # print("BJP loses by ",mod_num_votes[1]-mod_num_votes[0]," votes")
             table_div=table_div+"<div>"+"BJP loses by "+str(mod_num_votes[1]-mod_num_votes[0])+" votes"+"</div>"
 
         # print(table_div)
@@ -172,10 +172,10 @@ def analyze_constituency(state,district,constituency,df_results):
 
 
         if mod_num_votes[0]>mod_num_votes[1]:
-            print("BJP still wins by ",mod_num_votes[0]-mod_num_votes[1]," votes")
+            # print("BJP still wins by ",mod_num_votes[0]-mod_num_votes[1]," votes")
             table_div=table_div+"<div>"+"BJP still wins by "+str(mod_num_votes[0]-mod_num_votes[1])+" votes"+"</div>"
         else:
-            print("BJP loses by ",mod_num_votes[1]-mod_num_votes[0]," votes")
+            # print("BJP loses by ",mod_num_votes[1]-mod_num_votes[0]," votes")
             table_div=table_div+"<div>"+"BJP loses by "+str(mod_num_votes[1]-mod_num_votes[0])+" votes"+"</div>"
 
         
