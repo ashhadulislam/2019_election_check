@@ -79,3 +79,16 @@
 #Uttar Pradesh#XBulandshaharX
 #Jharkhand#XGiridihiX
 #Delhi#XNorth East DelhiX2004
+#West Bengal#XKolkata DakshinX2004
+#West Bengal#XKolkata UttarX2004
+#Gujarat#XBharuchX2004
+#Gujarat#XKachchhX2004
+#Haryana#XGurgaonX2004
+#Jharkhand#XGiridihiX2014
+#Jharkhand#XGiridihiX2009
+#Jharkhand#XGiridihiX2004
+#Jharkhand#XGiridihiX2014
+#Jharkhand#XGiridihiX2009
+#Jharkhand#XGiridihiX2004
+#West Bengal#XBaharampurX2004
+#West Bengal#XMaldaha DakshinX2004

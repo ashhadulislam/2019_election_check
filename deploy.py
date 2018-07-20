@@ -449,6 +449,7 @@ def give_graph():
     else:
         whole_div='<div>'
         for i in range(len(graph_divs)):
+            print("div len is ",len(graph_divs[i]))
             width=int(100/len(graph_divs[i]))
             # print("width=",width)
             line_div='<div style="width: 100%;"><div style="float: left; width: '+str(width)+'%;">'
