@@ -346,18 +346,21 @@ def get_constituencies(state_name,district_name):
     dist_const_df["State"] = dist_const_df["State"].str.strip()
     dist_const_df["Districts"] = dist_const_df["Districts"].str.strip()
 
+    print("sname=",state_name)
+
     dist_const_df = dist_const_df[dist_const_df["State"]==state_name]
+    print(dist_const_df)
     dist_const_df = dist_const_df[dist_const_df["Districts"]==district_name]
     dist_const_df = dist_const_df.reset_index(drop=True)
 
-    # print(dist_const_df)
+    print(dist_const_df)
 
     max_constituencies=10
     constituencies=[]
     for count in range(1,max_constituencies):
         col_name="Constituency"+str(count)
         if col_name in list(dist_const_df.columns.values):
-            # print("looking for column",col_name)
+            print("looking for column",col_name)
             if pd.isnull(dist_const_df.at[0,col_name]) == False:
                 constituencies.append(dist_const_df.at[0,col_name])
             else:
@@ -429,8 +432,8 @@ def generate_data_for_district(state_name,district_name):
 def give_graph():
 
     val=str(request.form['state'])+" "+str(request.form['state_dist'])
-    state=request.form['state']
-    district=request.form['state_dist']
+    state=request.form['state'].strip()
+    district=request.form['state_dist'].strip()
     full_div="<div><h2>"+val+"</h2></div>"
 
     graph_divs=generate_data_for_district(state,district)
