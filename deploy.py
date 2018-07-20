@@ -349,9 +349,13 @@ def get_constituencies(state_name,district_name):
     print("sname=",state_name)
 
     dist_const_df = dist_const_df[dist_const_df["State"]==state_name]
-    print(dist_const_df)
+    # print(dist_const_df)
     dist_const_df = dist_const_df[dist_const_df["Districts"]==district_name]
     dist_const_df = dist_const_df.reset_index(drop=True)
+
+    if dist_const_df.empty:
+        print("no match ",state_name,district_name)
+        return None
 
     print(dist_const_df)
 
@@ -408,6 +412,8 @@ def generate_data_for_district(state_name,district_name):
     
 
     constituencies=get_constituencies(state_name,district_name)
+    if constituencies is None:
+        return None
     # print(constituencies)
     years=['2014','2009','2004']
     graph_divs=generate_graph_div_list_districtwise(state_name,district_name,constituencies,years)
@@ -436,25 +442,23 @@ def give_graph():
     district=request.form['state_dist'].strip()
     full_div="<div><h2>"+val+"</h2></div>"
 
-    graph_divs=generate_data_for_district(state,district)
-
     whole_div=""
-
-
-
-
-    whole_div='<div>'
-    for i in range(len(graph_divs)):
-        width=int(100/len(graph_divs[i]))
-        # print("width=",width)
-        line_div='<div style="width: 100%;"><div style="float: left; width: '+str(width)+'%;">'
-        for j in range(len(graph_divs[i])):
-            # print("div is ",graph_divs[i][j])
-            line_div=line_div+graph_divs[i][j]
-            line_div=line_div+'</div><div style="float: left; width: '+str(width)+'%;">'
-        line_div=line_div+'</div>'
-        whole_div=whole_div+line_div
-    whole_div=whole_div+"</div>"
+    graph_divs=generate_data_for_district(state,district)
+    if graph_divs is None:
+        whole_div =  "<div>No match for state "+state+" and district "+district+"</div>"
+    else:
+        whole_div='<div>'
+        for i in range(len(graph_divs)):
+            width=int(100/len(graph_divs[i]))
+            # print("width=",width)
+            line_div='<div style="width: 100%;"><div style="float: left; width: '+str(width)+'%;">'
+            for j in range(len(graph_divs[i])):
+                # print("div is ",graph_divs[i][j])
+                line_div=line_div+graph_divs[i][j]
+                line_div=line_div+'</div><div style="float: left; width: '+str(width)+'%;">'
+            line_div=line_div+'</div>'
+            whole_div=whole_div+line_div
+        whole_div=whole_div+"</div>"
 
     whole_div=full_div+whole_div
 
