@@ -327,7 +327,7 @@ def make_x_y_data_color_bar_graph(df,x_column,y_column,merge_factor):
 def get_graph_for_votes(df,state,district,constituency,year,merge_factor):
         
     x,y,colors=make_x_y_data_color_bar_graph(df,"Party","Count Of Votes",merge_factor)
-    title=state+' '+district+' '+constituency+' '+year
+    title='Const: '+constituency+' '+year
     graph_div=get_bar_graph_div(x,y,colors,title)
     return graph_div
 
@@ -437,7 +437,7 @@ def generate_data_for_district(state_name,district_name):
 @app.route('/submit_form1', methods=[ 'POST'])
 def give_graph():
 
-    val=str(request.form['state'])+" "+str(request.form['state_dist'])
+    val="State: "+str(request.form['state'])+"</br>District: "+str(request.form['state_dist'])
     state=request.form['state'].strip()
     district=request.form['state_dist'].strip()
     full_div="<div><h2>"+val+"</h2></div>"
