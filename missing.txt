@@ -1,1 +1,13 @@
 #West Bengal#XMurshidabadXMaldaha DakshinX2004
+#Kerala#XKozhikodeXKozhikodeX2004
+#Kerala#XKozhikodeXVadakaraX2004
+#Kerala#XKozhikodeXWayanadX2004
+#Kerala#XKozhikodeXKozhikodeX2004
+#Kerala#XKozhikodeXVadakaraX2004
+#Kerala#XKozhikodeXWayanadX2004
+#Delhi#XNorth EastXNorth East DelhiX2004
+#West Bengal#XSouth  24 ParganasXJaynagarX2004
+#West Bengal#XSouth  24 ParganasXKolkata DakshinX2004
+#Kerala#XKannurXKannurX2004
+#Kerala#XKannurXVadakaraX2004
+#Delhi#XNorth EastXNorth East DelhiX2004

@@ -5,8 +5,58 @@ import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
 
+all_vote_result_df={}
+dist_const_df_total=None
+'''
+{
+	'Haryana':
+	{
+		'2009':dframe,
+		'2014':dframe,
+		'2011':dframe,
+	
+	},
+	'Assam':
+	{
+		'2009':dframe,
+		'2014':dframe,
+		'2011':dframe
+	
+	}
+
+	
+
+
+}
+'''
+
+def prepare_dataset(states,years):
+	global all_vote_result_df
+	for state in states:
+		all_vote_result_df[state]={}
+		for year in years:
+			df = pd.read_excel(state+".xlsx",sheet_name=year)
+			print(state,year)
+			all_vote_result_df[state][year]=df
+
+
+	global dist_const_df_total
+	dist_const_df_total = pd.read_excel("District-Constituency.xlsx")
+
+
+
+
 def main():
     print("At main, just once")
+    
+    #get unique states
+    muslim_pop_df=pd.read_excel("District-Constituency.xlsx")
+    states=muslim_pop_df.State.unique()
+
+
+    prepare_dataset(states,['2014','2009','2004'])
+    print("prepared data")
+    #prepare dataset here?
 
 app = Flask(__name__)
 
@@ -339,9 +389,10 @@ def get_graph_for_votes(df,state,district,constituency,year,merge_factor):
 
 def get_constituencies(state_name,district_name):
     # print(state_name," ",district_name)
-    dist_const_df = pd.read_excel("District-Constituency.xlsx")
+    # dist_const_df = pd.read_excel("District-Constituency.xlsx")
     #strip spaces from columns
-    dist_const_df = dist_const_df.rename(columns=lambda x: x.strip())
+    global dist_const_df_total
+    dist_const_df = dist_const_df_total.rename(columns=lambda x: x.strip())
 
     dist_const_df["State"] = dist_const_df["State"].str.strip()
     dist_const_df["Districts"] = dist_const_df["Districts"].str.strip()
@@ -381,7 +432,14 @@ def generate_graph_div_list_districtwise(state_name,district_name,constituencies
         # print("cons ",constituency)
         graph_div_year=[]
         for year in years:
-            df_result = pd.read_excel(state_name+".xlsx",sheet_name=year)
+            # df_result = pd.read_excel(state_name+".xlsx",sheet_name=year)
+
+            df_result=all_vote_result_df[state_name][year]
+            
+
+
+
+
             df_result_constituency=df_result[df_result["Constituency"]==constituency]
             # print(year)
             # print(df_result_constituency)
@@ -394,18 +452,15 @@ def generate_graph_div_list_districtwise(state_name,district_name,constituencies
                 continue
 
             df_result_constituency=df_result_constituency.sort_values(by=['Count Of Votes'],ascending=False)
+            
+
             merge_factor=0
             the_graph_div=get_graph_for_votes(df_result_constituency,state_name,district_name, constituency,year,merge_factor)
-            # print("the_graph_div",the_graph_div)
             graph_div_year.append(the_graph_div)
+
+
         graph_div_const_year.append(graph_div_year)
     return graph_div_const_year
-
-
-
-
-
-
 
 
 
