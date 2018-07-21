@@ -36,7 +36,7 @@ def prepare_dataset(states,years):
 		all_vote_result_df[state]={}
 		for year in years:
 			df = pd.read_excel(state+".xlsx",sheet_name=year)
-			print(state,year)
+			# print(state,year)
 			all_vote_result_df[state][year]=df
 
 
