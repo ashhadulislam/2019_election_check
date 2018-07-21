@@ -346,7 +346,7 @@ def get_constituencies(state_name,district_name):
     dist_const_df["State"] = dist_const_df["State"].str.strip()
     dist_const_df["Districts"] = dist_const_df["Districts"].str.strip()
 
-    print("sname=",state_name)
+    # print("sname=",state_name)
 
     dist_const_df = dist_const_df[dist_const_df["State"]==state_name]
     # print(dist_const_df)
@@ -357,14 +357,14 @@ def get_constituencies(state_name,district_name):
         print("no match ",state_name,district_name)
         return None
 
-    print(dist_const_df)
+    # print(dist_const_df)
 
     max_constituencies=10
     constituencies=[]
     for count in range(1,max_constituencies):
         col_name="Constituency"+str(count)
         if col_name in list(dist_const_df.columns.values):
-            print("looking for column",col_name)
+            # print("looking for column",col_name)
             if pd.isnull(dist_const_df.at[0,col_name]) == False:
                 constituencies.append(dist_const_df.at[0,col_name])
             else:
@@ -383,11 +383,13 @@ def generate_graph_div_list_districtwise(state_name,district_name,constituencies
         for year in years:
             df_result = pd.read_excel(state_name+".xlsx",sheet_name=year)
             df_result_constituency=df_result[df_result["Constituency"]==constituency]
+            # print(year)
+            # print(df_result_constituency)
             #check if constituency not present in state file is non 0
             num_of_candidates=df_result_constituency.shape[0]
             if num_of_candidates == 0:
                 f = open('missing.txt','a')
-                f.write("#"+state_name+"#"+"X"+constituency+"X"+year+"\n")
+                f.write("#"+state_name+"#"+"X"+district_name+"X"+constituency+"X"+year+"\n")
                 f.close()
                 continue
 
@@ -449,7 +451,7 @@ def give_graph():
     else:
         whole_div='<div>'
         for i in range(len(graph_divs)):
-            print("div len is ",len(graph_divs[i]))
+            # print("div len is ",len(graph_divs[i]))
             width=int(100/len(graph_divs[i]))
             # print("width=",width)
             line_div='<div style="width: 100%;"><div style="float: left; width: '+str(width)+'%;">'
