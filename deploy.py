@@ -435,6 +435,7 @@ def generate_graph_div_list_districtwise(state_name,district_name,constituencies
             # df_result = pd.read_excel(state_name+".xlsx",sheet_name=year)
 
             df_result=all_vote_result_df[state_name][year]
+
             
 
 
@@ -469,9 +470,10 @@ def generate_data_for_district(state_name,district_name):
     
 
     constituencies=get_constituencies(state_name,district_name)
+    print("const are",constituencies)
     if constituencies is None:
         return None
-    # print(constituencies)
+    
     years=['2014','2009','2004']
     graph_divs=generate_graph_div_list_districtwise(state_name,district_name,constituencies,years)
 
