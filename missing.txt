@@ -13,3 +13,36 @@
 #Delhi#XNorth EastXNorth East DelhiX2004
 #Bihar#XPashchim ChamparanXPaschim ChamparanX2004
 #Bihar#XPashchim ChamparanXValmiki NagarX2004
+#Delhi#XNorth EastXNorth East DelhiX2004
+#Delhi#XNorth EastXNorth East DelhiX2004
+#Kerala#XKannurXKannurX2004
+#Kerala#XKannurXVadakaraX2004
+#Kerala#XPalakkadXAlathurX2004
+#Kerala#XPalakkadXPalakkadX2004
+#Kerala#XKannurXKannurX2004
+#Kerala#XKannurXVadakaraX2004
+#Kerala#XKozhikodeXKozhikodeX2004
+#Kerala#XKozhikodeXVadakaraX2004
+#Kerala#XKozhikodeXWayanadX2004
+#Bihar#XKatiharXPurniaX2004
+#Assam#XGuwahatiX
+#Assam#XGuwahatiX
+#Assam#XGuwahatiX
+#Delhi#XNorth EastXNorth East DelhiX2004
+#Kerala#XKozhikodeXKozhikodeX2004
+#Kerala#XKozhikodeXVadakaraX2004
+#Kerala#XKozhikodeXWayanadX2004
+#West Bengal#XNadiaXBangaonX2004
+#West Bengal#XNadiaXKrishnanagarX2004
+#West Bengal#XNadiaXRanaghatX2004
+#West Bengal#XMurshidabadXMaldaha DakshinX2004
+#Uttar Pradesh#XBijnorXNaginaX2004
+#Uttar Pradesh#XBalrampurXShrawastiX2004
+#Uttar Pradesh#XBarabankiXBarbankiX2014
+#Uttar Pradesh#XBarabankiXBarbankiX2009
+#Uttar Pradesh#XBarabankiXBarbankiX2004
+#Uttar Pradesh#XBareillyXPilbhitX2014
+#Uttar Pradesh#XBareillyXPilbhitX2009
+#Uttar Pradesh#XBareillyXPilbhitX2004
+#Uttar Pradesh#XBijnorXNaginaX2004
+#Uttar Pradesh#XBudaunXBadaunX2004

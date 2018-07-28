@@ -7,41 +7,62 @@ import numpy as np
 
 all_vote_result_df={}
 dist_const_df_total=None
+
+
+#for BJP
+all_bjp={}
 '''
 {
-	'Haryana':
-	{
-		'2009':dframe,
-		'2014':dframe,
-		'2011':dframe,
-	
-	},
-	'Assam':
-	{
-		'2009':dframe,
-		'2014':dframe,
-		'2011':dframe
-	
-	}
+    'Haryana':
+    {
+        '2009':dframe,
+        '2014':dframe,
+        '2011':dframe,
+    
+    },
+    'Assam':
+    {
+        '2009':dframe,
+        '2014':dframe,
+        '2011':dframe
+    
+    }
 
-	
+    
 
 
 }
 '''
+'''
+all_bjp
+{
+    "2014":dframe
+    "2009":dframe
+    "2004":dframe
+    
+}
+'''
 
 def prepare_dataset(states,years):
-	global all_vote_result_df
-	for state in states:
-		all_vote_result_df[state]={}
-		for year in years:
-			df = pd.read_excel(state+".xlsx",sheet_name=year)
-			# print(state,year)
-			all_vote_result_df[state][year]=df
+    global all_vote_result_df
+    for state in states:
+        all_vote_result_df[state]={}
+        for year in years:
+            df = pd.read_excel(state+".xlsx",sheet_name=year)
+            # print(state,year)
+            all_vote_result_df[state][year]=df
 
 
-	global dist_const_df_total
-	dist_const_df_total = pd.read_excel("District-Constituency.xlsx")
+    global dist_const_df_total
+    dist_const_df_total = pd.read_excel("District-Constituency.xlsx")
+
+
+    #for BJP viewing
+    for year in years:
+        df = pd.read_excel("AllBJP.xlsx",sheet_name=year)
+        all_bjp[year]=df
+
+
 
 
 
@@ -61,6 +82,164 @@ def main():
 app = Flask(__name__)
 
 app.config["DEBUG"]=True
+
+
+
+def give_graph_table_div(df):
+
+    df=df.sort_values(by=['Count Of Votes'],ascending=False)
+        
+    winner_votes=int(df.iloc[0]["Count Of Votes"])
+    state=str(df.iloc[0]["State"])
+    constituency=str(df.iloc[0]["Constituency"])
+
+    num_votes=df["Count Of Votes"].tolist()
+    parties=df["Party"].tolist()
+    colors=[]
+    colors = ['rgba(104,204,204,1)']*len(parties)
+    colors[0]='rgba(221,104,94,1)'
+
+    data = [go.Bar(
+        x=parties,
+        y=num_votes,
+        marker=dict(
+        color=colors),
+        )]
+    layout = go.Layout(
+        title=state+' '+constituency+' 2014',
+    )
+
+    fig = go.Figure(data=data, layout=layout)
+
+    #to create a div for the graph
+    graph_div=plot(fig,output_type='div')
+
+    margin=num_votes[0]-num_votes[1]
+    # print("BJP won by ",margin," votes")
+
+    #here we make the first table
+
+    table_div="<div><table><tr>"
+    for party in parties:
+        table_div=table_div+"<th>"+str(party)+"<th>"
+    table_div=table_div+"</tr><tr>"
+    for vote in num_votes:
+        table_div=table_div+"<td>"+str(vote)+"<td>"
+    table_div=table_div+"</tr></table></div>"
+
+    table_div=table_div+"<div>"+"BJP wins by "+str(margin)+"votes"+"</div>"
+
+    mix_div=graph_div+table_div
+
+
+
+
+
+
+
+    #pitting top two against winner
+    mod_parties=[]
+    mod_parties.append(parties[0])
+    mod_parties.append(parties[1]+" & "+parties[2])
+    mod_num_votes=[]
+    mod_num_votes.append(num_votes[0])
+    mod_num_votes.append(num_votes[1]+num_votes[2])
+    colors = ['rgba(104,204,204,1)']*len(mod_parties)
+    colors[0]='rgba(221,104,94,1)'
+
+
+    data = [go.Bar(
+        x=mod_parties,
+        y=mod_num_votes,
+    marker=dict(
+        color=colors),
+
+    )]
+    layout = go.Layout(
+    title=state+' '+constituency+' 2014',
+    )
+
+    fig = go.Figure(data=data, layout=layout)
+    #to create a div for the graph
+    graph_div=plot(fig,output_type='div')
+    
+    table_div="<div><table><tr>"
+    for party in mod_parties:
+        table_div=table_div+"<th>"+str(party)+"<th>"
+    table_div=table_div+"</tr><tr>"
+    for vote in mod_num_votes:
+        table_div=table_div+"<td>"+str(vote)+"<td>"
+    table_div=table_div+"</tr></table></div>"
+
+
+
+    if mod_num_votes[0]>mod_num_votes[1]:
+        # print("BJP still wins by ",mod_num_votes[0]-mod_num_votes[1]," votes")
+        table_div=table_div+"<div>"+"BJP still wins by "+str(mod_num_votes[0]-mod_num_votes[1])+"votes"+"</div>"
+    else:
+        # print("BJP loses by ",mod_num_votes[1]-mod_num_votes[0]," votes")
+        table_div=table_div+"<div>"+"BJP loses by "+str(mod_num_votes[1]-mod_num_votes[0])+" votes"+"</div>"
+
+    # print(table_div)
+
+    mix_div=mix_div+graph_div+table_div
+
+
+
+    #pitting top three against winner
+    mod_parties=[]
+    mod_parties.append(parties[0])
+    mod_parties.append(parties[1]+" & "+parties[2]+" & "+parties[3])
+    mod_num_votes=[]
+    mod_num_votes.append(num_votes[0])
+    mod_num_votes.append(num_votes[1]+num_votes[2]+num_votes[3])
+    colors = ['rgba(104,204,204,1)']*len(mod_parties)
+    colors[0]='rgba(221,104,94,1)'
+
+    data = [go.Bar(
+                x=mod_parties,
+                y=mod_num_votes,
+        marker=dict(
+            color=colors),
+
+        )]
+    layout = go.Layout(
+        title=state+' '+constituency+' 2014',
+    )
+
+    fig = go.Figure(data=data, layout=layout)
+    #to create a div for the graph
+    graph_div=plot(fig,output_type='div')
+
+
+    table_div="<div><table><tr>"
+    for party in mod_parties:
+        table_div=table_div+"<th>"+str(party)+"<th>"
+    table_div=table_div+"</tr><tr>"
+    for vote in mod_num_votes:
+        table_div=table_div+"<td>"+str(vote)+"<td>"
+    table_div=table_div+"</tr></table></div>"
+
+
+
+    if mod_num_votes[0]>mod_num_votes[1]:
+        # print("BJP still wins by ",mod_num_votes[0]-mod_num_votes[1]," votes")
+        table_div=table_div+"<div>"+"BJP still wins by "+str(mod_num_votes[0]-mod_num_votes[1])+" votes"+"</div>"
+    else:
+        # print("BJP loses by ",mod_num_votes[1]-mod_num_votes[0]," votes")
+        table_div=table_div+"<div>"+"BJP loses by "+str(mod_num_votes[1]-mod_num_votes[0])+" votes"+"</div>"
+
+    
+    mix_div=mix_div+graph_div+table_div
+
+    return mix_div
+
+
+
+
+
+
+
 
 
 def analyze_constituency(state,district,constituency,df_results):
@@ -276,7 +455,8 @@ def generateGraphsAndData():
         district=row["Districts"].strip()
         year="2014"
 
-        obtained_div= obtained_div+ analyze_constituency_by_district(state,district,year)
+        if state!="Uttar Pradesh" and state!="Assam":
+            obtained_div= obtained_div+ analyze_constituency_by_district(state,district,year)
 
 
 
@@ -529,8 +709,24 @@ def give_graph():
 
 @app.route('/allbjp')
 def get_all_BJP():
+
+    year="2014"
+    states=["West Bengal"]
+    df=all_bjp[year]
+
+    full_div=""
+    for state in states:
+        df_state=df[df["State"]==state]
+        print(df_state.head())
+        print(df_state["Constituency"].unique())
+        for constituency in df_state["Constituency"].unique():
+            df_state_constituency=df_state[df_state["Constituency"]==constituency]
+            print(df_state_constituency)
+            full_div=full_div+give_graph_table_div(df_state_constituency)
+
+
     # generate_data_for_district("Andhra Pradesh","Hyderabad")
-    full_div=generateGraphsAndData()
+    # full_div=generateGraphsAndData()
     # return "hello"
     # return render_template('home.html',div_graph_placeholder=Markup(full_div))
     # full_div="<div><h2>State, District</h2></div>"
