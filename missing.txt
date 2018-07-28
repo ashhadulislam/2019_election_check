@@ -46,3 +46,10 @@
 #Uttar Pradesh#XBareillyXPilbhitX2004
 #Uttar Pradesh#XBijnorXNaginaX2004
 #Uttar Pradesh#XBudaunXBadaunX2004
+#Karnataka#XBijapurXBijapurX2009
+#Karnataka#XBangaloreXBangalore CentralX2004
+#Madhya Pradesh#XBhopalXBhopalX2004
+#Madhya Pradesh#XSehoreXBhopalX2004
+#Madhya Pradesh#XIndoreXIndoreX2004
+#Maharashtra#XRaigadXRaigadX2004
+#Maharashtra#XRatnagiriXRaigadX2004
